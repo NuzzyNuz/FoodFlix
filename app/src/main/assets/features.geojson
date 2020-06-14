@@ -1,0 +1,73 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Laugfs Super Market",
+        "hours": "Open 24 hours",
+        "phone": "+94 11 236 3815",
+        "description": "351 Galle Rd, Colombo 00600"
+      },
+      "geometry": {
+        "coordinates": [
+          79.862117,
+          6.871517
+        ],
+        "type": "Point"
+      },
+      "id": "0dc6b84743d0725d9d6ee6f65158cc7b"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Arpico Super Store - Wellawatta",
+        "hours": "8AM - 10PM",
+        "phone": "+94 11 451 8844",
+        "description": "338 Galle Rd, Colombo 6"
+      },
+      "geometry": {
+        "coordinates": [
+          79.862194,
+          6.868982
+        ],
+        "type": "Point"
+      },
+      "id": "78dc2548b568f926cdda9c60cc200203"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Cargills Food City - Wellawatta",
+        "hours": "8A/m - 10PM",
+        "phone": "+94 11 263 8970",
+        "description": "417 Galle Rd, Rathmalana"
+      },
+      "geometry": {
+        "coordinates": [
+          79.861814,
+          6.871175
+        ],
+        "type": "Point"
+      },
+      "id": "db8af0b8c831f0d8099379b8f6b563e3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "City Coop Wellawatte",
+        "hours": "8AM - 9PM",
+        "phone": "+94 76 555 9904",
+        "description": "235A Galle Rd, Colombo"
+      },
+      "geometry": {
+        "coordinates": [
+          79.861737,
+          6.873141
+        ],
+        "type": "Point"
+      },
+      "id": "e44dd96487cb96a51fb11f781ef73929"
+    }
+  ],
+  "type": "FeatureCollection"
+}

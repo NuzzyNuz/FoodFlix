@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="code_types">
+        <item>Select Type</item>
+        <item>QR Code</item>
+        <item>Bar Code</item>
+    </string-array>
+
+    <string-array name="dietary_definition">
+        <item>No Dietary Preference</item>
+        <item>Vegan</item>
+        <item>Ovo-Vegetarian</item>
+        <item>Lacto-Vegetarian</item>
+        <item>Lacto-Ovo Vegetarian</item>
+        <item>Pescetarians</item>
+        <item>Pollotarian</item>
+        <item>Pollo-Pescetarian</item>
+    </string-array>
+</resources>

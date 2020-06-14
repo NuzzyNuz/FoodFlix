@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.profile.ProfileActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/firstLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/secondLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/toolbar_height"
+                android:background="@drawable/gradient_title_bar_primary_color_and_accent_color"
+                android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+                app:contentInsetStartWithNavigation="@dimen/margin_0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/status_bar"
+                app:title="Account Settings" />
+
+            <com.example.foodflix.helpers.widget.BaseStatusBar
+                android:id="@+id/status_bar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_title_bar_primary_color_and_accent_color"
+                app:layout_constraintBottom_toTopOf="@+id/toolbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:id="@+id/frameLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/secondLayout">
+
+            <LinearLayout
+                android:id="@+id/ActivityLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/layoutHead"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:layout_below="@+id/secondLayout"
+                    android:background="@drawable/gradient_splash_primary_color_and_accent_color">
+
+
+                    <ImageView
+                        android:id="@+id/image_view_DP"
+                        android:layout_width="@dimen/width_150"
+                        android:layout_height="@dimen/height_150"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/ic_person"
+                        android:backgroundTint="#FFFFFF"
+                        android:cropToPadding="true"
+                        android:padding="1dp"
+                        android:scaleType="centerCrop" />
+
+                    <LinearLayout
+                        android:id="@+id/imgButtonLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/image_view_DP"
+                        android:layout_centerInParent="true"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/text_view_Cam"
+                            android:layout_width="@dimen/width_35"
+                            android:layout_height="@dimen/height_35"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="35dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_camera"
+                            android:tint="@color/white" />
+
+                        <ImageView
+                            android:id="@+id/text_view_pic"
+                            android:layout_width="@dimen/width_35"
+                            android:layout_height="@dimen/height_35"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_img"
+                            android:tint="@color/white" />
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/edit_text_name"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/imgButtonLayout"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:enabled="true"
+                        android:hint="Enter Your Name Here"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@android:color/white"
+                        android:textColorHint="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:text="Enter Your Name Here" />
+
+                    <ProgressBar
+                        android:id="@+id/progressbar_pic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:visibility="invisible" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="360dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/layoutHead"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/text_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:drawableStart="@drawable/ic_email"
+                        android:drawablePadding="16dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textSize="16sp"
+                        tools:text="example@gmail.com" />
+
+                    <TextView
+                        android:id="@+id/text_not_verified"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginBottom="9dp"
+                        android:text="Not Verified (Click to Verify)"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:visibility="invisible" />
+
+
+                    <TextView
+                        android:id="@+id/text_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginBottom="20dp"
+                        android:drawableLeft="@drawable/ic_phone"
+                        android:drawablePadding="16dp"
+                        android:enabled="true"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textSize="16sp"
+                        android:visibility="visible"
+                        tools:text="+917549161079" />
+
+                    <TextView
+                        android:id="@+id/text_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginBottom="10dp"
+                        android:drawableLeft="@drawable/ic_lock"
+                        android:drawablePadding="16dp"
+                        android:enabled="true"
+                        android:text="Change Password"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textSize="16sp" />
+
+
+                    <ProgressBar
+                        android:id="@+id/progressbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:visibility="invisible" />
+
+                    <!--                <Button-->
+                    <!--                    android:id="@+id/button_save"-->
+                    <!--                    android:layout_width="140dp"-->
+                    <!--                    android:layout_height="wrap_content"-->
+                    <!--                    android:layout_gravity="center_horizontal"-->
+                    <!--                    android:layout_marginTop="15dp"-->
+                    <!--                    android:background="?colorPrimaryDark"-->
+                    <!--                    android:text="Save Changes"-->
+                    <!--                    android:textAllCaps="false"-->
+                    <!--                    android:textColor="@android:color/white" />-->
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/button_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/gradient_button_primary_color_and_accent_color"
+                        android:fontFamily="@font/opensans_regular"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_16"
+                        android:text="Save Changes"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_body"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+    </RelativeLayout>
+
+
+</layout>

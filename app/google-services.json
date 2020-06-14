@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "761171846915",
+    "firebase_url": "https://foodflix-application-2020.firebaseio.com",
+    "project_id": "foodflix-application-2020",
+    "storage_bucket": "foodflix-application-2020.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761171846915:android:2d2b7724ea8a54b6dbeb36",
+        "android_client_info": {
+          "package_name": "com.example.foodflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761171846915-cq581gahepm5e18ltlcpkntjpumk42e7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-LSOrsAaSXWtTlGQpclAbo1gyfGOosU4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761171846915-cq581gahepm5e18ltlcpkntjpumk42e7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
