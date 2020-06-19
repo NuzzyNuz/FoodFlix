@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.foodflix">
@@ -27,7 +31,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.resetpassword.ResetPasswordActivity"></activity>
+        <activity android:name=".ui.map.activity.LocationComponentActivity"></activity>
+        <activity android:name=".ui.alternativeproducts.AlternativeProductsActivity" />
+        <activity android:name=".ui.resetpassword.ResetPasswordActivity" />
         <activity android:name=".ui.map.activity.MapActivity" />
         <activity android:name=".ui.viewproduct.ViewProductActivity" />
         <activity android:name=".ui.adddiet.AddDietPrefActivity" />
@@ -50,6 +56,10 @@
                 android:resource="@xml/file_provider_paths" />
         </provider>
 
+        <activity
+            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+            android:launchMode="standard"
+            tools:replace="android:launchMode" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="fullSensor"

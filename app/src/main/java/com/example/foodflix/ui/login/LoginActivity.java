@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.login;
 
 import android.content.Intent;
@@ -22,11 +26,29 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * The type Login activity.
+ */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * The M auth.
+     */
     FirebaseAuth mAuth;
+    /**
+     * The M auth user.
+     */
     FirebaseUser mAuthUser;
-    EditText editTextEmail, editTextPassword;
+    /**
+     * The Edit text email.
+     */
+    EditText editTextEmail, /**
+     * The Edit text password.
+     */
+    editTextPassword;
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
 
@@ -83,6 +105,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {

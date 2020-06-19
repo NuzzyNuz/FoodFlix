@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.profile;
 
 import android.content.Intent;
@@ -40,6 +44,9 @@ import java.util.Objects;
 
 import io.reactivex.annotations.NonNull;
 
+/**
+ * The type Profile activity.
+ */
 public class ProfileActivity extends AppCompatActivity {
 
 
@@ -48,24 +55,72 @@ public class ProfileActivity extends AppCompatActivity {
 
     private static final String DEFAULT_IMAGE_URL = "https://picsum.photos/200";
 
+    /**
+     * The Uri profile image.
+     */
     Uri uriProfileImage;
 
-    ImageView imageViewDP, imgViewCam, imgViewPic;
-    TextView textEmail, textPhone, textPassword, textVerifyEmail, buttonSave;
+    /**
+     * The Image view dp.
+     */
+    ImageView imageViewDP, /**
+     * The Img view cam.
+     */
+    imgViewCam, /**
+     * The Img view pic.
+     */
+    imgViewPic;
+    /**
+     * The Text email.
+     */
+    TextView textEmail, /**
+     * The Text phone.
+     */
+    textPhone, /**
+     * The Text password.
+     */
+    textPassword, /**
+     * The Text verify email.
+     */
+    textVerifyEmail, /**
+     * The Button save.
+     */
+    buttonSave;
+    /**
+     * The Edit text name.
+     */
     EditText editTextName;
 //    Button buttonSave;
 
+    /**
+     * The Profile image url.
+     */
     String profileImageUrl;
+    /**
+     * The Profile image uri.
+     */
     String profileImageURI;
 
+    /**
+     * The M auth.
+     */
     FirebaseAuth mAuth;
+    /**
+     * The M auth user.
+     */
     FirebaseUser mAuthUser;
 
+    /**
+     * The Toolbar.
+     */
     Toolbar toolbar;
 
     private ProgressBar progressbar_pic, progressbarContent;
     private View ActivityLayout;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,22 +165,16 @@ public class ProfileActivity extends AppCompatActivity {
 
         });
 
-        textEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityLayout.setVisibility(View.GONE);
-                toolbar.setTitle("Update Email");
-                getSupportFragmentManager().beginTransaction().add(R.id.frameLayout1, new UpdateEmailFragment()).commit();
-            }
+        textEmail.setOnClickListener(view -> {
+            ActivityLayout.setVisibility(View.GONE);
+            toolbar.setTitle("Update Email");
+            getSupportFragmentManager().beginTransaction().add(R.id.frameLayout1, new UpdateEmailFragment()).commit();
         });
 
-        textPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityLayout.setVisibility(View.GONE);
-                toolbar.setTitle("Change Password");
-                getSupportFragmentManager().beginTransaction().add(R.id.frameLayout1, new UpdatePasswordFragment()).commit();
-            }
+        textPassword.setOnClickListener(view1 -> {
+            ActivityLayout.setVisibility(View.GONE);
+            toolbar.setTitle("Change Password");
+            getSupportFragmentManager().beginTransaction().add(R.id.frameLayout1, new UpdatePasswordFragment()).commit();
         });
 
     }

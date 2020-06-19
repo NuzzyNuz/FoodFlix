@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.splash;
 
 import android.content.Intent;
@@ -13,6 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodflix.R;
 import com.example.foodflix.ui.login.LoginActivity;
 
+/**
+ * The type Splash activity.
+ */
 public class SplashActivity extends AppCompatActivity {
 
     /**

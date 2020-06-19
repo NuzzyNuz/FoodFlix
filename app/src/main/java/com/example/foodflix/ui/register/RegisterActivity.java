@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.register;
 
 import android.content.Intent;
@@ -12,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodflix.R;
+import com.example.foodflix.ui.adddiet.AddDietPrefActivity;
 import com.example.foodflix.ui.home.HomeActivity;
 import com.example.foodflix.ui.homeuser.HomeuserActivity;
 import com.example.foodflix.ui.login.LoginActivity;
@@ -22,10 +27,27 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * The type Register activity.
+ */
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String FROM_REGISTER = "com.example.foodflix.productCode";
+
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
-    EditText editTextEmail, editTextPassword, editTextConfirmPassword;
+    /**
+     * The Edit text email.
+     */
+    EditText editTextEmail, /**
+     * The Edit text password.
+     */
+    editTextPassword, /**
+     * The Edit text confirm password.
+     */
+    editTextConfirmPassword;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mAuthUser;
@@ -123,8 +145,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.INVISIBLE);
                 if (task.isSuccessful()) {
-                    Intent intent = new Intent(RegisterActivity.this, HomeuserActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, AddDietPrefActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra(FROM_REGISTER, "RegistrationIntent");
                     startActivity(intent);
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {

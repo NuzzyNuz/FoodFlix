@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.map.util;
 
 /**
@@ -5,6 +9,9 @@ package com.example.foodflix.ui.map.util;
  */
 public class StringConstants {
 
+    /**
+     * The constant SELECTED_THEME.
+     */
     public static final String SELECTED_THEME = "SELECTED THEME";
 
 }

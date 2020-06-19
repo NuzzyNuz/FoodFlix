@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.viewproduct;
 
 import android.content.Intent;
@@ -6,11 +10,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,15 +37,30 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type View product activity.
+ */
 public class ViewProductActivity extends AppCompatActivity {
 
 
+    /**
+     * The Products.
+     */
     List<Product> products;
 
+    /**
+     * The Database products.
+     */
     DatabaseReference databaseProducts;
 
+    /**
+     * The List view products.
+     */
     ListView listViewProducts;
 
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
 
     private TextView textViewReturn, textViewReturnHome;
@@ -52,9 +73,10 @@ public class ViewProductActivity extends AppCompatActivity {
 
         //getting the reference of products node
         databaseProducts = FirebaseDatabase.getInstance().getReference("products");
+        databaseProducts.keepSynced(true);
 
         textViewReturn = findViewById(R.id.text_view_return);
-        textViewReturn = findViewById(R.id.text_view_returnHome);
+        textViewReturnHome = findViewById(R.id.text_view_returnHome);
 
         listViewProducts = findViewById(R.id.listViewProducts);
 
@@ -82,7 +104,7 @@ public class ViewProductActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Product product = products.get(i);
-                showUpdateDeleteDialog(product.getProductCode(), product.getProductName(), product.getPeanut(), product.getMilk(), product.getWheat(), product.getSoy(), product.getShellFish(), product.getEgg(), product.getFish(), product.getPork(), product.getAlcohol(), product.getPoultry(), product.getBeef());
+                showUpdateDeleteDialog(product.getProductCode(), product.getProductName(), product.getProductCategory(), product.getPeanut(), product.getMilk(), product.getWheat(), product.getSoy(), product.getShellFish(), product.getEgg(), product.getFish(), product.getPork(), product.getAlcohol(), product.getPoultry(), product.getBeef());
                 return true;
             }
         });
@@ -118,7 +140,7 @@ public class ViewProductActivity extends AppCompatActivity {
         });
     }
 
-    private void showUpdateDeleteDialog(String productCode, String productName, String peanut, String milk, String wheat, String soy, String shellFish, String egg, String fish, String pork, String alcohol, String poultry, String beef) {
+    private void showUpdateDeleteDialog(String productCode, String productName, String productCategory, String peanut, String milk, String wheat, String soy, String shellFish, String egg, String fish, String pork, String alcohol, String poultry, String beef) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.update_delete_product, null);
@@ -128,6 +150,7 @@ public class ViewProductActivity extends AppCompatActivity {
         final Button buttonDelete = dialogView.findViewById(R.id.buttonDeleteProduct);
 //        final EditText editTextProductBarcode = dialogView.findViewById(R.id.editTextProductBarcodeU);
         final EditText editTextProductName = dialogView.findViewById(R.id.editTextProductNameU);
+        final Spinner spinnerProductCategory = dialogView.findViewById(R.id.spinnerCategoryU);
         final CheckBox checkBoxPeanut = dialogView.findViewById(R.id.checkBoxPeanutPU);
         final CheckBox checkBoxMilk = dialogView.findViewById(R.id.checkBoxMilkPU);
         final CheckBox checkBoxWheat = dialogView.findViewById(R.id.checkBoxWheatPU);
@@ -142,6 +165,12 @@ public class ViewProductActivity extends AppCompatActivity {
         final ProgressBar progressBar = dialogView.findViewById(R.id.progressbarImgU);
 
 //        editTextProductBarcode.setText(productCode);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.product_category, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerProductCategory.setAdapter(adapter);
+        int spinnerPosition = adapter.getPosition(productCategory);
+        spinnerProductCategory.setSelection(spinnerPosition);
 
         editTextProductName.setText(productName);
         if (peanut.equals("true")) {
@@ -188,6 +217,7 @@ public class ViewProductActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 //                String productCode = editTextProductBarcode.getText().toString().trim();
                 String productName = editTextProductName.getText().toString().trim();
+                String productCategory = spinnerProductCategory.getSelectedItem().toString();
 
                 String peanut = "false";
                 String milk = "false";
@@ -236,7 +266,7 @@ public class ViewProductActivity extends AppCompatActivity {
                 }
 
                 if (!TextUtils.isEmpty(productName)) {
-                    updateProduct(productCode, productName, peanut, milk, wheat, soy, shellFish, egg, fish, pork, alcohol, poultry, beef);
+                    updateProduct(productCode, productName, productCategory, peanut, milk, wheat, soy, shellFish, egg, fish, pork, alcohol, poultry, beef);
                     progressBar.setVisibility(View.INVISIBLE);
                     b.dismiss();
                 }
@@ -257,11 +287,11 @@ public class ViewProductActivity extends AppCompatActivity {
 
     }
 
-    private boolean updateProduct(String productCode, String productName, String peanut, String milk, String wheat, String soy, String shellFish, String egg, String fish, String pork, String alcohol, String poultry, String beef) {
+    private boolean updateProduct(String productCode, String productName, String productCategory, String peanut, String milk, String wheat, String soy, String shellFish, String egg, String fish, String pork, String alcohol, String poultry, String beef) {
         DatabaseReference DB = databaseProducts.child(productCode);
 
         //updating product
-        Product product = new Product(productCode, productName, peanut, milk, wheat, soy, shellFish, egg, fish, pork, alcohol, poultry, beef);
+        Product product = new Product(productCode, productName, productCategory, peanut, milk, wheat, soy, shellFish, egg, fish, pork, alcohol, poultry, beef);
         DB.setValue(product);
 
         Toast.makeText(getApplicationContext(), "Product Updated", Toast.LENGTH_LONG).show();

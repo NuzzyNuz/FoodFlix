@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.helpers.model;
 
 import android.os.Parcel;
@@ -9,6 +13,9 @@ import androidx.room.Ignore;
 import com.example.foodflix.helpers.constant.TableNames;
 import com.example.foodflix.helpers.util.database.BaseEntity;
 
+/**
+ * The type Code.
+ */
 @Entity(tableName = TableNames.CODES)
 public class Code extends BaseEntity {
 
@@ -16,7 +23,13 @@ public class Code extends BaseEntity {
      * Constants
      */
     public static final int QR_CODE = 1;
+    /**
+     * The constant BAR_CODE.
+     */
     public static final int BAR_CODE = 2;
+    /**
+     * The constant CREATOR.
+     */
     public static final Parcelable.Creator<Code> CREATOR = new Parcelable.Creator<Code>() {
         @Override
         public Code createFromParcel(Parcel source) {
@@ -37,15 +50,31 @@ public class Code extends BaseEntity {
     private String mCodeImagePath;
     private long mTimeStamp;
 
+    /**
+     * Instantiates a new Code.
+     */
     public Code() {
     }
 
+    /**
+     * Instantiates a new Code.
+     *
+     * @param content the content
+     * @param type    the type
+     */
     @Ignore
     public Code(String content, int type) {
         mContent = content;
         mType = type;
     }
 
+    /**
+     * Instantiates a new Code.
+     *
+     * @param content   the content
+     * @param type      the type
+     * @param timeStamp the time stamp
+     */
     @Ignore
     public Code(String content, int type, long timeStamp) {
         mContent = content;
@@ -53,6 +82,14 @@ public class Code extends BaseEntity {
         mTimeStamp = timeStamp;
     }
 
+    /**
+     * Instantiates a new Code.
+     *
+     * @param content       the content
+     * @param type          the type
+     * @param codeImagePath the code image path
+     * @param timeStamp     the time stamp
+     */
     @Ignore
     public Code(String content, int type, String codeImagePath, long timeStamp) {
         mContent = content;
@@ -61,6 +98,11 @@ public class Code extends BaseEntity {
         mTimeStamp = timeStamp;
     }
 
+    /**
+     * Instantiates a new Code.
+     *
+     * @param in the in
+     */
     @Ignore
     protected Code(Parcel in) {
         this.mContent = in.readString();
@@ -69,34 +111,74 @@ public class Code extends BaseEntity {
         this.mCodeImagePath = in.readString();
     }
 
+    /**
+     * Gets content.
+     *
+     * @return the content
+     */
     public String getContent() {
         return mContent;
     }
 
+    /**
+     * Sets content.
+     *
+     * @param content the content
+     */
     public void setContent(String content) {
         mContent = content;
     }
 
+    /**
+     * Gets type.
+     *
+     * @return the type
+     */
     public int getType() {
         return mType;
     }
 
+    /**
+     * Sets type.
+     *
+     * @param type the type
+     */
     public void setType(int type) {
         mType = type;
     }
 
+    /**
+     * Gets code image path.
+     *
+     * @return the code image path
+     */
     public String getCodeImagePath() {
         return mCodeImagePath;
     }
 
+    /**
+     * Sets code image path.
+     *
+     * @param codeImagePath the code image path
+     */
     public void setCodeImagePath(String codeImagePath) {
         mCodeImagePath = codeImagePath;
     }
 
+    /**
+     * Gets time stamp.
+     *
+     * @return the time stamp
+     */
     public long getTimeStamp() {
         return mTimeStamp;
     }
 
+    /**
+     * Sets time stamp.
+     *
+     * @param timeStamp the time stamp
+     */
     public void setTimeStamp(long timeStamp) {
         mTimeStamp = timeStamp;
     }

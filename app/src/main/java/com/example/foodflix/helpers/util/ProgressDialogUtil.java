@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.helpers.util;
 
 import android.content.Context;
@@ -8,6 +12,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.example.foodflix.databinding.ProgresssDialogLayoutBinding;
 
+/**
+ * The type Progress dialog util.
+ */
 public class ProgressDialogUtil {
 
     private static ProgressDialogUtil sInstance;
@@ -17,6 +24,11 @@ public class ProgressDialogUtil {
 
     }
 
+    /**
+     * On progress dialog util.
+     *
+     * @return the progress dialog util
+     */
     public static ProgressDialogUtil on() {
         if (sInstance == null) {
             sInstance = new ProgressDialogUtil();
@@ -25,6 +37,11 @@ public class ProgressDialogUtil {
         return sInstance;
     }
 
+    /**
+     * Show progress dialog.
+     *
+     * @param context the context
+     */
     public void showProgressDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
@@ -41,6 +58,9 @@ public class ProgressDialogUtil {
         mAlertDialog.show();
     }
 
+    /**
+     * Hide progress dialog.
+     */
     public void hideProgressDialog() {
         if (mAlertDialog != null) {
             mAlertDialog.dismiss();

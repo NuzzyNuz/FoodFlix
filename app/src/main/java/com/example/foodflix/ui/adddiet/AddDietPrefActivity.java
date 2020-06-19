@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.adddiet;
 
 import android.content.Intent;
@@ -18,7 +22,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.foodflix.R;
 import com.example.foodflix.data.DietPref;
+import com.example.foodflix.ui.homeuser.HomeuserActivity;
 import com.example.foodflix.ui.login.LoginActivity;
+import com.example.foodflix.ui.register.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,37 +37,106 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * The type Add diet pref activity.
+ */
 public class AddDietPrefActivity extends AppCompatActivity {
 
-    //view objects
+    /**
+     * The Spinner diet def.
+     */
+//view objects
     Spinner spinnerDietDef;
-    TextView buttonAddDietPref;
+    /**
+     * The Button add diet pref.
+     */
+    TextView buttonAddDietPref, textViewSkip;
 
-    CheckBox checkBoxPeanut, checkBoxMilk, checkBoxWheat,
-            checkBoxSoy, checkBoxShellFish, checkBoxEgg, checkBoxFish,
-            checkBoxPork, checkBoxAlcohol, checkBoxPoultry, checkBoxBeef;
+    /**
+     * The Check box peanut.
+     */
+    CheckBox checkBoxPeanut,
+    /**
+     * The Check box milk.
+     */
+    checkBoxMilk,
+    /**
+     * The Check box wheat.
+     */
+    checkBoxWheat,
+    /**
+     * The Check box soy.
+     */
+    checkBoxSoy,
+    /**
+     * The Check box shell fish.
+     */
+    checkBoxShellFish,
+    /**
+     * The Check box egg.
+     */
+    checkBoxEgg,
+    /**
+     * The Check box fish.
+     */
+    checkBoxFish,
+    /**
+     * The Check box pork.
+     */
+    checkBoxPork,
+    /**
+     * The Check box alcohol.
+     */
+    checkBoxAlcohol,
+    /**
+     * The Check box poultry.
+     */
+    checkBoxPoultry,
+    /**
+     * The Check box beef.
+     */
+    checkBoxBeef;
 
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
 
-    //a list to store all the dietPref in firebase database
+    /**
+     * The Diet prefs.
+     */
+//a list to store all the dietPref in firebase database
     List<DietPref> dietPrefs;
 
-    //database reference object
+    /**
+     * The Database diet preference.
+     */
+//database reference object
     DatabaseReference databaseDietPreference;
 
-    //Firebase User
+    /**
+     * The M auth.
+     */
+//Firebase User
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    /**
+     * The M auth user.
+     */
     FirebaseUser mAuthUser = mAuth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_diet_pref);
+
+        Intent intent = getIntent();
+        String RegisterIntent = intent.getStringExtra(RegisterActivity.FROM_REGISTER);
+
         initializeToolbar();
 
-        //getting the reference of artists node
+        //getting the reference of diet preferences node
         databaseDietPreference = FirebaseDatabase.getInstance().getReference("dietPreferences");
-
+        databaseDietPreference.keepSynced(true);
         //getting views
         spinnerDietDef = findViewById(R.id.spinnerDietaryDef);
 
@@ -81,10 +156,22 @@ public class AddDietPrefActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressbarImg);
 
+        textViewSkip = findViewById(R.id.textViewSkip);
+
+
+        if (RegisterIntent != null) {
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            textViewSkip.setVisibility(View.VISIBLE);
+            toolbar.setVisibility(View.GONE);
+            textViewSkip.setOnClickListener(view1 -> {
+                startActivity(new Intent(this, HomeuserActivity.class));
+            });
+        }
+
         loadDietPrefInformation();
 
 
-        //list to store artists
+        //list to store diet preferences
         dietPrefs = new ArrayList<>();
 
 

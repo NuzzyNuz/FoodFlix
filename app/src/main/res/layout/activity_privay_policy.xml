@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+  -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -24,7 +28,7 @@
             android:background="@drawable/gradient_title_bar_primary_color_and_accent_color"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
             app:contentInsetStartWithNavigation="@dimen/margin_0"
-            app:layout_constraintBottom_toTopOf="@+id/text_view_play_sound"
+            app:layout_constraintBottom_toTopOf="@+id/scroll_view_body_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/status_bar"
@@ -35,6 +39,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="@dimen/margin_8"
             android:fillViewport="true"
+            android:id="@+id/scroll_view_body_container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

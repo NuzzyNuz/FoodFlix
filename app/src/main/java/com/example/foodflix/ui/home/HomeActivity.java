@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.home;
 
 import android.Manifest;
@@ -32,15 +36,28 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * The type Home activity.
+ */
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityHomeBinding mBinding;
     private Menu mToolbarMenu;
 
+    /**
+     * Gets toolbar menu.
+     *
+     * @return the toolbar menu
+     */
     public Menu getToolbarMenu() {
         return mToolbarMenu;
     }
 
+    /**
+     * Sets toolbar menu.
+     *
+     * @param toolbarMenu the toolbar menu
+     */
     public void setToolbarMenu(Menu toolbarMenu) {
         mToolbarMenu = toolbarMenu;
     }
@@ -108,6 +125,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(mBinding.toolbar);
     }
 
+    /**
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_toolbar_menu, menu);
@@ -115,6 +136,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         return true;
     }
 
+    /**
+     * @param item
+     * @return true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -229,6 +254,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         showFragment(HistoryFragment.newInstance());
     }
 
+    /**
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -252,12 +280,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * @param title
+     */
     private void setToolbarTitle(String title) {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(title);
         }
     }
 
+    /**
+     * @param fragment
+     */
     private void showFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.coordinator_layout_fragment_container, fragment,
@@ -265,6 +299,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         transaction.commit();
     }
 
+    /**
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

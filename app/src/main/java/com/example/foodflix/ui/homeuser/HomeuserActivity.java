@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.homeuser;
 
 import android.Manifest;
@@ -31,15 +35,28 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * The type Homeuser activity.
+ */
 public class HomeuserActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityHomeuserBinding mBinding;
     private Menu mToolbarMenu;
 
+    /**
+     * Gets toolbar menu.
+     *
+     * @return the toolbar menu
+     */
     public Menu getToolbarMenu() {
         return mToolbarMenu;
     }
 
+    /**
+     * Sets toolbar menu.
+     *
+     * @param toolbarMenu the toolbar menu
+     */
     public void setToolbarMenu(Menu toolbarMenu) {
         mToolbarMenu = toolbarMenu;
     }
@@ -114,6 +131,10 @@ public class HomeuserActivity extends AppCompatActivity implements View.OnClickL
         return true;
     }
 
+    /**
+     * @param item
+     * @return true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

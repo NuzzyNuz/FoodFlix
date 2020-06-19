@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+  -->
+
 <layout>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,7 +30,7 @@
             android:background="@drawable/gradient_title_bar_primary_color_and_accent_color"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
             app:contentInsetStartWithNavigation="@dimen/margin_0"
-            app:layout_constraintBottom_toTopOf="@+id/text_view_account"
+            app:layout_constraintBottom_toTopOf="@+id/scroll_view_body_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/status_bar"
@@ -36,6 +40,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/scroll_view_body_container"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <RelativeLayout
@@ -243,7 +248,7 @@
                         android:layout_marginStart="@dimen/margin_64"
                         android:layout_marginTop="@dimen/margin_30"
                         android:layout_marginEnd="@dimen/margin_64"
-                        android:layout_marginBottom="@dimen/margin_32"
+                        android:layout_marginBottom="@dimen/margin_10"
                         android:background="@drawable/gradient_button_primary_color_and_accent_color"
                         android:fontFamily="@font/opensans_regular"
                         android:gravity="center"
@@ -253,6 +258,15 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/text_body"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textViewSkip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/buttonAddDietPref"
+                        android:layout_centerHorizontal="true"
+                        android:text="Skip for now >"
+                        android:visibility="gone" />
 
                     <ProgressBar
                         android:id="@+id/progressbarImg"

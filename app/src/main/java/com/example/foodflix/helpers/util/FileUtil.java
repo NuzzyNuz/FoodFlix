@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.helpers.util;
 
 import android.content.Context;
@@ -9,9 +13,21 @@ import com.example.foodflix.R;
 
 import java.io.File;
 import java.io.IOException;
-//import qrcoba.w3engineers.com.qrcoba.R;
 
+/**
+ * The type File util.
+ */
 public class FileUtil {
+    /**
+     * Gets empty file.
+     *
+     * @param context        the context
+     * @param fileNamePrefix the file name prefix
+     * @param fileNameBody   the file name body
+     * @param fileNameSuffix the file name suffix
+     * @param directoryType  the directory type
+     * @return the empty file
+     */
     public static File getEmptyFile(Context context, String fileNamePrefix,
                                     String fileNameBody, String fileNameSuffix,
                                     String directoryType) {

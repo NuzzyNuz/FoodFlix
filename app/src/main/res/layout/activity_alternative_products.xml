@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.alternativeproducts.AlternativeProductsActivity">
+
+    <TextView
+        android:id="@+id/text_view_returnHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_gradient_button_background_selector"
+        android:gravity="center"
+        android:padding="@dimen/padding_16"
+        android:text="Return to Home"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/sample"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Text"
+        android:textSize="50sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_view_returnHome"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:text="Alternative Products"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:paddingStart="@dimen/padding_3"
+        android:paddingEnd="@dimen/padding_3"
+        android:paddingBottom="15dp"
+        android:text="Suggested alternative products in comparison to the previously scanned product and your personalized dietary preferences 'Settings > Dietary Preferences'"
+        android:textAlignment="center" />
+
+    <ListView
+        android:id="@+id/listViewProducts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView1" />
+
+    <ProgressBar
+        android:id="@+id/progressbarImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>

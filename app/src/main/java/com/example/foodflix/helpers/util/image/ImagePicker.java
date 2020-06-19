@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.helpers.util.image;
 
 import android.app.Activity;
@@ -21,9 +25,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * The type Image picker.
+ */
 public class ImagePicker {
 
-    // Constants
+    /**
+     * The constant REQUEST_CODE_PICK_IMAGE.
+     */
+// Constants
     public final static int REQUEST_CODE_PICK_IMAGE = 15913;
     private final static int DEFAULT_MIN_WIDTH_QUALITY = 400; // Minimum pixels
     private final static String PICKER_TITLE = "Pick Image";
@@ -66,6 +76,7 @@ public class ImagePicker {
      * This method provides the intent to pick images from device gallery, camera and photos
      *
      * @param context current activity UI context
+     * @return the image picking intent
      */
     public static Intent getImagePickingIntent(Context context) {
         if (context == null) return null;
@@ -96,6 +107,7 @@ public class ImagePicker {
      * @param context         current activity UI context
      * @param resultCode      resultCode according to the result
      * @param intentWithImage intent that contains the desired image
+     * @return the picked image info
      */
     public static ImageInfo getPickedImageInfo(Context context, int resultCode, Intent intentWithImage) {
         if (context == null || resultCode != Activity.RESULT_OK) {
@@ -111,6 +123,7 @@ public class ImagePicker {
      * @param context         current activity UI context
      * @param resultCode      resultCode according to the result
      * @param intentWithImage intent that contains the desired image
+     * @return the picked image from result
      */
     public static Bitmap getPickedImageFromResult(Context context, int resultCode, Intent intentWithImage) {
         if (context == null || resultCode != Activity.RESULT_OK) {

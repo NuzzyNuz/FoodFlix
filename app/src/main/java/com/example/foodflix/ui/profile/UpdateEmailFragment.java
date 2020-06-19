@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.profile;
 
 import android.content.Intent;
@@ -30,12 +34,39 @@ import com.google.firebase.auth.FirebaseUser;
  */
 public class UpdateEmailFragment extends Fragment {
 
+    /**
+     * The M auth.
+     */
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    /**
+     * The M auth user.
+     */
     FirebaseUser mAuthUser = mAuth.getCurrentUser();
 
-    View layoutPassword, layoutEmail;
-    TextView emailUpdate, passwordUpdate;
-    EditText passwordTxt, emailTxt;
+    /**
+     * The Layout password.
+     */
+    View layoutPassword, /**
+     * The Layout email.
+     */
+    layoutEmail;
+    /**
+     * The Email update.
+     */
+    TextView emailUpdate, /**
+     * The Password update.
+     */
+    passwordUpdate;
+    /**
+     * The Password txt.
+     */
+    EditText passwordTxt, /**
+     * The Email txt.
+     */
+    emailTxt;
+    /**
+     * The Progressbar.
+     */
     ProgressBar progressbar;
 
     @Override
@@ -45,6 +76,10 @@ public class UpdateEmailFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_update_email, container, false);
     }
 
+    /**
+     * @param view
+     * @param savedInstanceState
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.addproduct;
 
 
@@ -59,6 +63,9 @@ import java.util.List;
 import java.util.Locale;
 
 
+/**
+ * The type Add product fragment.
+ */
 public class AddProductFragment extends androidx.fragment.app.Fragment implements View.OnClickListener {
 
     private Context mContext;
@@ -68,10 +75,18 @@ public class AddProductFragment extends androidx.fragment.app.Fragment implement
     private TextView mTextViewFlash, mTextViewScanGallery, buttonGoToProduct, buttonViewProduct;
     private boolean mIsFlashOn;
 
+    /**
+     * Instantiates a new Add product fragment.
+     */
     public AddProductFragment() {
 
     }
 
+    /**
+     * New instance com . example . foodflix . ui . addproduct . add product fragment.
+     *
+     * @return the com . example . foodflix . ui . addproduct . add product fragment
+     */
     public static com.example.foodflix.ui.addproduct.AddProductFragment newInstance() {
         return new com.example.foodflix.ui.addproduct.AddProductFragment();
     }
@@ -182,6 +197,9 @@ public class AddProductFragment extends androidx.fragment.app.Fragment implement
         mBarcodeView.setStatusText(AppConstants.EMPTY_STRING);
     }
 
+    /**
+     * @param view
+     */
     private void initializeViews(@NonNull View view) {
         mTextViewFlash = view.findViewById(R.id.text_view_set_flash);
         mTextViewScanGallery = view.findViewById(R.id.text_view_scan_gallery);
@@ -211,6 +229,9 @@ public class AddProductFragment extends androidx.fragment.app.Fragment implement
         mBarcodeView.pause();
     }
 
+    /**
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -249,6 +270,11 @@ public class AddProductFragment extends androidx.fragment.app.Fragment implement
         }
     }
 
+    /**
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -288,6 +314,10 @@ public class AddProductFragment extends androidx.fragment.app.Fragment implement
         }
     }
 
+    /**
+     * @param bitmap
+     * @return Result
+     */
     private Result processBitmapToGetResult(Bitmap bitmap) {
         if (bitmap != null) {
             int[] intArray = new int[bitmap.getWidth() * bitmap.getHeight()];
@@ -334,6 +364,10 @@ public class AddProductFragment extends androidx.fragment.app.Fragment implement
         }
     }
 
+    /**
+     * @param uri
+     * @return cursor
+     */
     private String getPathFromUri(Uri uri) {
         if (mContext == null) {
             return null;

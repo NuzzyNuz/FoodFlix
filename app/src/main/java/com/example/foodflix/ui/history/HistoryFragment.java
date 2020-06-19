@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.history;
 
 import android.content.Context;
@@ -31,6 +35,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * The type History fragment.
+ */
 public class HistoryFragment extends Fragment implements OnStartDragListener, ItemClickListener<Code> {
 
     private Context mContext;
@@ -39,10 +46,18 @@ public class HistoryFragment extends Fragment implements OnStartDragListener, It
     private ItemTouchHelper mItemTouchHelper;
     private HistoryAdapter mAdapter;
 
+    /**
+     * Instantiates a new History fragment.
+     */
     public HistoryFragment() {
 
     }
 
+    /**
+     * New instance history fragment.
+     *
+     * @return the history fragment
+     */
     public static HistoryFragment newInstance() {
         return new HistoryFragment();
     }

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ */
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
@@ -21,6 +25,9 @@ allprojects {
         mavenCentral()
         maven { url "https://jitpack.io" }
     }
+//    tasks.withType(JavaCompile) {
+//        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+//    }
 }
 
 task clean(type: Delete) {

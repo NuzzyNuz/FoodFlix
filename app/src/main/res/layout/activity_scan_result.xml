@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+  -->
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -49,12 +53,13 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/image_view_scanned_code"
-                    android:layout_width="@dimen/width_250"
-                    android:layout_height="@dimen/height_250"
+                    android:layout_width="@dimen/width_150"
+                    android:layout_height="@dimen/height_150"
                     android:layout_marginStart="@dimen/margin_32"
                     android:layout_marginTop="@dimen/margin_32"
                     android:layout_marginEnd="@dimen/margin_32"
                     android:layout_marginBottom="@dimen/margin_16"
+                    android:visibility="visible"
                     app:layout_constraintBottom_toTopOf="@+id/card_view_description"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +75,7 @@
                     android:background="@color/white"
                     app:cardElevation="@dimen/elevation_2"
                     app:cardUseCompatPadding="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/layoutProductDetails"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/image_view_scanned_code">
@@ -135,6 +140,147 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
+                <LinearLayout
+                    android:id="@+id/layoutProductDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_view_alternatives"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_view_description">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:textAlignment="textStart">
+
+                        <TextView
+                            android:id="@+id/textViewProductNameR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewProductCatR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:textSize="14sp" />
+
+
+                        <com.nex3z.flowlayout.FlowLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:longClickable="true"
+                            app:flChildSpacing="5dp"
+                            app:flChildSpacingForLastRow="align"
+                            app:flRowSpacing="1dp">
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipPeanutR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="peanut"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipMilkR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="milk"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipWheatR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="wheat"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipsoyR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="soy"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipshellFishR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="shellFish"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipeggR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="egg"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipfishR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="fish"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipporkR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="pork"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipalcoholR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="alcohol"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chippoultryR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="poultry"
+                                android:visibility="gone" />
+
+                            <com.google.android.material.chip.Chip
+                                android:id="@+id/chipbeefR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="beef"
+                                android:visibility="gone" />
+
+                        </com.nex3z.flowlayout.FlowLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/text_view_alternatives"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:background="@drawable/custom_gradient_button_background_selector"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_16"
+                    android:text="View Alternative Products"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutProductDetails" />
+
                 <!--                <TextView-->
                 <!--                    android:id="@+id/text_view_open_in_browser"-->
                 <!--                    android:layout_width="0dp"-->
@@ -155,7 +301,20 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/progressbarImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!--    <com.google.android.gms.ads.AdView-->
         <!--        android:id="@+id/adView"-->

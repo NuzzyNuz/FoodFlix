@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.helpers.util.database;
 
 import android.content.Context;
@@ -11,7 +15,20 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type App database.
+ */
 public abstract class AppDatabase extends RoomDatabase {
+    /**
+     * Create db t.
+     *
+     * @param <T>              the type parameter
+     * @param context          the context
+     * @param dbName           the db name
+     * @param dbService        the db service
+     * @param migrationScripts the migration scripts
+     * @return the t
+     */
     protected static <T extends RoomDatabase> T createDb(Context context, String dbName,
                                                          Class<T> dbService,
                                                          String... migrationScripts) {

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+  -->
+
 <resources>
     <string-array name="code_types">
         <item>Select Type</item>
@@ -15,5 +19,20 @@
         <item>Pescetarians</item>
         <item>Pollotarian</item>
         <item>Pollo-Pescetarian</item>
+    </string-array>
+
+    <string-array name="product_category">
+        <item>Select Product Category</item>
+        <item>Carbonated Beverages</item>
+        <item>Bakery</item>
+        <item>Canned Goods</item>
+        <item>Dairy Products</item>
+        <item>Dry/Baking Goods</item>
+        <item>Frozen Food</item>
+        <item>Salty Snacks</item>
+        <item>Cold Cereal</item>
+        <item>Yogurt</item>
+        <item>Soup</item>
+        <item>Ice Cream</item>
     </string-array>
 </resources>

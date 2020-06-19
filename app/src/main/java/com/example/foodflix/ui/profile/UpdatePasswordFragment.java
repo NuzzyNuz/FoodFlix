@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.profile;
 
 import android.content.Intent;
@@ -31,12 +35,42 @@ import com.google.firebase.auth.FirebaseUser;
  */
 public class UpdatePasswordFragment extends Fragment {
 
+    /**
+     * The M auth.
+     */
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    /**
+     * The M auth user.
+     */
     FirebaseUser mAuthUser = mAuth.getCurrentUser();
 
-    View layoutPassword, layoutUpdatePassword;
-    TextView buttonAuthenticate, buttonPasswordUpdate;
-    EditText editTextPassword, editTextNewPassword, editTextNewPasswordConfirm;
+    /**
+     * The Layout password.
+     */
+    View layoutPassword, /**
+     * The Layout update password.
+     */
+    layoutUpdatePassword;
+    /**
+     * The Button authenticate.
+     */
+    TextView buttonAuthenticate, /**
+     * The Button password update.
+     */
+    buttonPasswordUpdate;
+    /**
+     * The Edit text password.
+     */
+    EditText editTextPassword, /**
+     * The Edit text new password.
+     */
+    editTextNewPassword, /**
+     * The Edit text new password confirm.
+     */
+    editTextNewPasswordConfirm;
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
 
     @Override

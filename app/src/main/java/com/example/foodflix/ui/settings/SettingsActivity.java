@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.settings;
 
 import android.content.Intent;
@@ -22,6 +26,9 @@ import com.example.foodflix.ui.privacy_policy.PrivayPolicyActivity;
 import com.example.foodflix.ui.profile.ProfileActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * The type Settings activity.
+ */
 public class SettingsActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
     private ActivitySettingsBinding mBinding;
@@ -127,19 +134,39 @@ public class SettingsActivity extends AppCompatActivity implements CompoundButto
         }
     }
 
+    /**
+     * Start about us activity.
+     *
+     * @param view the view
+     */
     public void startAboutUsActivity(View view) {
 
         startActivity(new Intent(this, AboutUsActivity.class));
     }
 
+    /**
+     * Start privacy policy activity.
+     *
+     * @param view the view
+     */
     public void startPrivacyPolicyActivity(View view) {
         startActivity(new Intent(this, PrivayPolicyActivity.class));
     }
 
+    /**
+     * Start account settings activity.
+     *
+     * @param view the view
+     */
     public void startAccountSettingsActivity(View view) {
         startActivity(new Intent(this, ProfileActivity.class));
     }
 
+    /**
+     * Start logout activity.
+     *
+     * @param view the view
+     */
     public void startLogoutActivity(View view) {
 //        startActivity(new Intent(this, LogoutActivity.class));
         FirebaseAuth.getInstance().signOut();
@@ -149,10 +176,20 @@ public class SettingsActivity extends AppCompatActivity implements CompoundButto
 
     }
 
+    /**
+     * Start diet preferences activity.
+     *
+     * @param view the view
+     */
     public void startDietPreferencesActivity(View view) {
         startActivity(new Intent(this, AddDietPrefActivity.class));
     }
 
+    /**
+     * Start map activity.
+     *
+     * @param view the view
+     */
     public void startMapActivity(View view) {
         startActivity(new Intent(this, MapActivity.class));
     }

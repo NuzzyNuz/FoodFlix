@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.viewproduct;
 
 
@@ -15,10 +19,22 @@ import com.google.android.material.chip.Chip;
 import java.util.List;
 
 
+/**
+ * The type Product list activity.
+ */
 public class ProductListActivity extends ArrayAdapter<Product> {
+    /**
+     * The Products.
+     */
     List<Product> products;
     private Activity context;
 
+    /**
+     * Instantiates a new Product list activity.
+     *
+     * @param context  the context
+     * @param products the products
+     */
     public ProductListActivity(Activity context, List<Product> products) {
         super(context, R.layout.activity_product_list, products);
         this.context = context;
@@ -33,6 +49,7 @@ public class ProductListActivity extends ArrayAdapter<Product> {
 
         TextView textViewProductName = listViewItem.findViewById(R.id.textViewProductName);
         TextView textViewProductBarcode = listViewItem.findViewById(R.id.textViewProductBarcode);
+        TextView textViewProductCategory = listViewItem.findViewById(R.id.textViewProductCat);
         Chip chipPeanut = listViewItem.findViewById(R.id.chipPeanut);
         Chip chipMilk = listViewItem.findViewById(R.id.chipMilk);
         Chip chipWheat = listViewItem.findViewById(R.id.chipWheat);
@@ -48,6 +65,7 @@ public class ProductListActivity extends ArrayAdapter<Product> {
         Product product = products.get(position);
         textViewProductName.setText(product.getProductName());
         textViewProductBarcode.setText(product.getProductCode());
+        textViewProductCategory.setText(product.getProductCategory());
 
         if (product.getPeanut().equals("true")) {
             chipPeanut.setText("peanut");

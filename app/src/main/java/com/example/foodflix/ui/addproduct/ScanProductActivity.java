@@ -1,11 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.addproduct;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -14,13 +16,13 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.foodflix.R;
@@ -50,15 +52,68 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * The type Scan product activity.
+ */
 public class ScanProductActivity extends AppCompatActivity {
 
-    CheckBox checkBoxPeanut, checkBoxMilk, checkBoxWheat,
-            checkBoxSoy, checkBoxShellFish, checkBoxEgg, checkBoxFish,
-            checkBoxPork, checkBoxAlcohol, checkBoxPoultry, checkBoxBeef;
-    //a list to store all the dietPref in firebase database
+    /**
+     * The Check box peanut.
+     */
+    CheckBox checkBoxPeanut,
+    /**
+     * The Check box milk.
+     */
+    checkBoxMilk,
+    /**
+     * The Check box wheat.
+     */
+    checkBoxWheat,
+    /**
+     * The Check box soy.
+     */
+    checkBoxSoy,
+    /**
+     * The Check box shell fish.
+     */
+    checkBoxShellFish,
+    /**
+     * The Check box egg.
+     */
+    checkBoxEgg,
+    /**
+     * The Check box fish.
+     */
+    checkBoxFish,
+    /**
+     * The Check box pork.
+     */
+    checkBoxPork,
+    /**
+     * The Check box alcohol.
+     */
+    checkBoxAlcohol,
+    /**
+     * The Check box poultry.
+     */
+    checkBoxPoultry,
+    /**
+     * The Check box beef.
+     */
+    checkBoxBeef;
+    /**
+     * The Products.
+     */
+//a list to store all the dietPref in firebase database
     List<Product> products;
-    //database reference object
+    /**
+     * The Database products.
+     */
+//database reference object
     DatabaseReference databaseProducts;
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
     private CompositeDisposable mCompositeDisposable;
     private ActivityScanProductBinding mBinding;
@@ -67,27 +122,58 @@ public class ScanProductActivity extends AppCompatActivity {
     private boolean mIsHistory, mIsPickedFromGallery;
     private EditText editTextProductBarcode, editTextProductName;
     private TextView addProductBTN;
+    private Spinner spinnerProductCat;
 
+    /**
+     * Gets composite disposable.
+     *
+     * @return the composite disposable
+     */
     public CompositeDisposable getCompositeDisposable() {
         return mCompositeDisposable;
     }
 
+    /**
+     * Sets composite disposable.
+     *
+     * @param compositeDisposable the composite disposable
+     */
     public void setCompositeDisposable(CompositeDisposable compositeDisposable) {
         mCompositeDisposable = compositeDisposable;
     }
 
+    /**
+     * Gets current code.
+     *
+     * @return the current code
+     */
     public Code getCurrentCode() {
         return mCurrentCode;
     }
 
+    /**
+     * Sets current code.
+     *
+     * @param currentCode the current code
+     */
     public void setCurrentCode(Code currentCode) {
         mCurrentCode = currentCode;
     }
 
+    /**
+     * Gets toolbar menu.
+     *
+     * @return the toolbar menu
+     */
     public Menu getToolbarMenu() {
         return mToolbarMenu;
     }
 
+    /**
+     * Sets toolbar menu.
+     *
+     * @param toolbarMenu the toolbar menu
+     */
     public void setToolbarMenu(Menu toolbarMenu) {
         mToolbarMenu = toolbarMenu;
     }
@@ -128,10 +214,10 @@ public class ScanProductActivity extends AppCompatActivity {
         getWindow().setBackgroundDrawable(null);
         initializeToolbar();
         loadQRCode();
-//        setListeners();
 
         //getting the reference of products node
         databaseProducts = FirebaseDatabase.getInstance().getReference("products");
+        databaseProducts.keepSynced(true);
 
         editTextProductBarcode = findViewById(R.id.editTextProductBarcode);
         editTextProductName = findViewById(R.id.editTextProductName);
@@ -146,6 +232,7 @@ public class ScanProductActivity extends AppCompatActivity {
         checkBoxAlcohol = findViewById(R.id.checkBoxAlcoholP);
         checkBoxPoultry = findViewById(R.id.checkBoxPoultryP);
         checkBoxBeef = findViewById(R.id.checkBoxBeefP);
+        spinnerProductCat = findViewById(R.id.spinnerCategory);
 
         addProductBTN = findViewById(R.id.buttonAddProduct);
 
@@ -177,6 +264,8 @@ public class ScanProductActivity extends AppCompatActivity {
         }
 
         String productName = editTextProductName.getText().toString().trim();
+
+        String productCategory = spinnerProductCat.getSelectedItem().toString();
 
         String peanut = "false";
         String milk = "false";
@@ -248,7 +337,7 @@ public class ScanProductActivity extends AppCompatActivity {
                             Intent intent = new Intent(ScanProductActivity.this, ViewProductActivity.class);
                             startActivity(intent);
                         } else {
-                            Product product = new Product(finalProductCode, productName, finalPeanut, finalMilk, finalWheat, finalSoy, finalShellfish, finalEgg, finalFish, finalPork, finalAlcohol, finalPoultry, finalBeef);
+                            Product product = new Product(finalProductCode, productName, productCategory, finalPeanut, finalMilk, finalWheat, finalSoy, finalShellfish, finalEgg, finalFish, finalPork, finalAlcohol, finalPoultry, finalBeef);
 
                             databaseProducts.child(finalProductCode).setValue(product);
 
@@ -372,6 +461,10 @@ public class ScanProductActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * @param menu
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.home_toolbar_menu, menu);
@@ -392,18 +485,4 @@ public class ScanProductActivity extends AppCompatActivity {
         }
     }
 
-    private void shareCode(File codeImageFile) {
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-        shareIntent.setType("image/*");
-
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-            shareIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(this,
-                    getString(R.string.file_provider_authority), codeImageFile));
-            shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        } else {
-            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(codeImageFile));
-        }
-
-        startActivity(Intent.createChooser(shareIntent, getString(R.string.share_code_using)));
-    }
 }

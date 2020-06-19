@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.map.activity;
 
 import android.content.Context;
@@ -633,6 +637,12 @@ public class MapActivity extends AppCompatActivity implements
         private int navigationLineColor;
         private String mapStyle;
 
+        /**
+         * Instantiates a new Custom theme manager.
+         *
+         * @param selectedTheme the selected theme
+         * @param context       the context
+         */
         CustomThemeManager(int selectedTheme, Context context) {
             this.selectedTheme = selectedTheme;
             this.context = context;
@@ -651,22 +661,47 @@ public class MapActivity extends AppCompatActivity implements
             }
         }
 
+        /**
+         * Gets unselected marker icon.
+         *
+         * @return the unselected marker icon
+         */
         public Bitmap getUnselectedMarkerIcon() {
             return unselectedMarkerIcon;
         }
 
+        /**
+         * Gets mock location icon.
+         *
+         * @return the mock location icon
+         */
         public Bitmap getMockLocationIcon() {
             return mockLocationIcon;
         }
 
+        /**
+         * Gets selected marker icon.
+         *
+         * @return the selected marker icon
+         */
         public Bitmap getSelectedMarkerIcon() {
             return selectedMarkerIcon;
         }
 
+        /**
+         * Gets navigation line color.
+         *
+         * @return the navigation line color
+         */
         int getNavigationLineColor() {
             return navigationLineColor;
         }
 
+        /**
+         * Gets map style.
+         *
+         * @return the map style
+         */
         public String getMapStyle() {
             return mapStyle;
         }

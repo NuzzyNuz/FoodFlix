@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.profile;
 
 import android.content.Intent;
@@ -35,12 +39,36 @@ import java.util.concurrent.TimeUnit;
  */
 public class VerifyPhoneFragment extends Fragment {
 
-    View layoutPhone, layoutVerification;
-    TextView buttonSendCode, buttonVerify;
+    /**
+     * The Layout phone.
+     */
+    View layoutPhone, /**
+     * The Layout verification.
+     */
+    layoutVerification;
+    /**
+     * The Button send code.
+     */
+    TextView buttonSendCode, /**
+     * The Button verify.
+     */
+    buttonVerify;
+    /**
+     * The Progress bar.
+     */
     ProgressBar progressBar;
+    /**
+     * The Verification id.
+     */
     String verificationID = null;
 
+    /**
+     * The M auth.
+     */
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    /**
+     * The M auth user.
+     */
     FirebaseUser mAuthUser = mAuth.getCurrentUser();
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks phoneAuthCallbacks =

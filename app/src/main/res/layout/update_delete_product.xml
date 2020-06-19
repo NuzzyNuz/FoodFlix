@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+  -->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,7 +21,7 @@
             android:id="@+id/TVproductnameU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:fontFamily="sans-serif-black"
             android:paddingStart="@dimen/margin_20"
             android:paddingTop="10dp"
@@ -36,12 +40,33 @@
             android:singleLine="true"
             android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/categoryTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextProductNameU"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:paddingLeft="@dimen/margin_20"
+            android:paddingTop="10dp"
+            android:text="SELECT PRODUCT CATEGORY" />
+
+        <Spinner
+            android:id="@+id/spinnerCategoryU"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_40"
+            android:layout_below="@id/categoryTV"
+            android:layout_marginLeft="@dimen/margin_20"
+            android:layout_marginTop="10dp"
+            android:background="@color/textViewBackground"
+            android:entries="@array/product_category" />
+
 
         <TextView
             android:id="@+id/textView3U"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/editTextProductNameU"
+            android:layout_below="@id/spinnerCategoryU"
             android:layout_marginTop="15dp"
             android:fontFamily="sans-serif-black"
             android:paddingStart="@dimen/margin_20"

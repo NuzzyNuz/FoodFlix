@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.pickedfromgallery;
 
 import android.content.Intent;
@@ -19,24 +23,47 @@ import com.example.foodflix.helpers.model.Code;
 import com.example.foodflix.ui.scanresult.ScanResultActivity;
 import com.example.foodflix.ui.settings.SettingsActivity;
 
+/**
+ * The type Picked from gallery activity.
+ */
 public class PickedFromGalleryActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityPickedFromGalleryBinding mBinding;
     private Code mCurrentCode;
     private Menu mToolbarMenu;
 
+    /**
+     * Gets toolbar menu.
+     *
+     * @return the toolbar menu
+     */
     public Menu getToolbarMenu() {
         return mToolbarMenu;
     }
 
+    /**
+     * Sets toolbar menu.
+     *
+     * @param toolbarMenu the toolbar menu
+     */
     public void setToolbarMenu(Menu toolbarMenu) {
         mToolbarMenu = toolbarMenu;
     }
 
+    /**
+     * Gets current code.
+     *
+     * @return the current code
+     */
     public Code getCurrentCode() {
         return mCurrentCode;
     }
 
+    /**
+     * Sets current code.
+     *
+     * @param currentCode the current code
+     */
     public void setCurrentCode(Code currentCode) {
         mCurrentCode = currentCode;
     }

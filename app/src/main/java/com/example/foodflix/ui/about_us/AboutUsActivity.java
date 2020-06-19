@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.about_us;
 
 import android.os.Bundle;
@@ -10,13 +14,19 @@ import androidx.databinding.DataBindingUtil;
 import com.example.foodflix.R;
 import com.example.foodflix.databinding.ActivityAboutUsBinding;
 
-//import qrcoba.w3engineers.com.qrcoba.R;
-//import qrcoba.w3engineers.com.qrcoba.databinding.ActivityAboutUsBinding;
-
+/**
+ * The type About us activity.
+ */
 public class AboutUsActivity extends AppCompatActivity {
 
+    /**
+     * The M activity about us binding.
+     */
     ActivityAboutUsBinding mActivityAboutUsBinding;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +35,9 @@ public class AboutUsActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method initializes the Toolbar
+     */
     private void initializeToolbar() {
         setSupportActionBar(mActivityAboutUsBinding.toolbar);
 
@@ -35,6 +48,12 @@ public class AboutUsActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method is for the arrow key and onBackPressed
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

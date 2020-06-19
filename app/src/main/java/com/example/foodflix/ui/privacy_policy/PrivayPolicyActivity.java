@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.privacy_policy;
 
 import android.os.Build;
@@ -15,8 +19,14 @@ import androidx.databinding.DataBindingUtil;
 import com.example.foodflix.R;
 import com.example.foodflix.databinding.ActivityPrivayPolicyBinding;
 
+/**
+ * The type Privay policy activity.
+ */
 public class PrivayPolicyActivity extends AppCompatActivity {
 
+    /**
+     * The Activity privay policy.
+     */
     ActivityPrivayPolicyBinding activity_privay_policy;
 
     @Override
@@ -57,6 +67,10 @@ public class PrivayPolicyActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * @param item
+     * @return option item selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

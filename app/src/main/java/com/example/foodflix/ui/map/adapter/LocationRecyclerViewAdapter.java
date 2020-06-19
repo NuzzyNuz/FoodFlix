@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.map.adapter;
 
 import android.content.Context;
@@ -41,6 +45,14 @@ public class LocationRecyclerViewAdapter extends
     private int locationDistanceNumColor = 0;
     private int milesAbbreviationColor = 0;
 
+    /**
+     * Instantiates a new Location recycler view adapter.
+     *
+     * @param styles            the styles
+     * @param context           the context
+     * @param cardClickListener the card click listener
+     * @param selectedTheme     the selected theme
+     */
     public LocationRecyclerViewAdapter(List<IndividualLocation> styles,
                                        Context context, ClickListener cardClickListener, int selectedTheme) {
         this.context = context;
@@ -122,24 +134,76 @@ public class LocationRecyclerViewAdapter extends
         card.milesAbbreviationTextView.setAlpha(milesAbbreviationAlpha);
     }
 
+    /**
+     * The interface Click listener.
+     */
     public interface ClickListener {
+        /**
+         * On item click.
+         *
+         * @param position the position
+         */
         void onItemClick(int position);
     }
 
+    /**
+     * The type View holder.
+     */
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        /**
+         * The Name text view.
+         */
         TextView nameTextView;
+        /**
+         * The Address text view.
+         */
         TextView addressTextView;
+        /**
+         * The Phone num text view.
+         */
         TextView phoneNumTextView;
+        /**
+         * The Hours text view.
+         */
         TextView hoursTextView;
+        /**
+         * The Distance number text view.
+         */
         TextView distanceNumberTextView;
+        /**
+         * The Hours header text view.
+         */
         TextView hoursHeaderTextView;
+        /**
+         * The Miles abbreviation text view.
+         */
         TextView milesAbbreviationTextView;
+        /**
+         * The Phone header text view.
+         */
         TextView phoneHeaderTextView;
+        /**
+         * The Constraint upper color section.
+         */
         ConstraintLayout constraintUpperColorSection;
+        /**
+         * The Card view.
+         */
         CardView cardView;
+        /**
+         * The Background circle image view.
+         */
         ImageView backgroundCircleImageView;
+        /**
+         * The Emoji image view.
+         */
         ImageView emojiImageView;
 
+        /**
+         * Instantiates a new View holder.
+         *
+         * @param itemView the item view
+         */
         ViewHolder(View itemView) {
             super(itemView);
             nameTextView = itemView.findViewById(R.id.location_name_tv);

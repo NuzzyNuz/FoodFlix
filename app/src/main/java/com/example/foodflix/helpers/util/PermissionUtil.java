@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.helpers.util;
 
 import android.app.Activity;
@@ -12,7 +16,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * The type Permission util.
+ */
 public class PermissionUtil {
+    /**
+     * The constant REQUEST_CODE_PERMISSION_DEFAULT.
+     */
     public static final int REQUEST_CODE_PERMISSION_DEFAULT = 1;
     private static PermissionUtil sInstance;
 
@@ -20,6 +30,11 @@ public class PermissionUtil {
 
     }
 
+    /**
+     * On permission util.
+     *
+     * @return the permission util
+     */
     public static PermissionUtil on() {
         if (sInstance == null) {
             sInstance = new PermissionUtil();
@@ -28,20 +43,50 @@ public class PermissionUtil {
         return sInstance;
     }
 
+    /**
+     * Request permission boolean.
+     *
+     * @param activity    the activity
+     * @param permissions the permissions
+     * @return the boolean
+     */
     public synchronized boolean requestPermission(Activity activity, String... permissions) {
         return requestPermission(null, activity,
                 REQUEST_CODE_PERMISSION_DEFAULT, Arrays.asList(permissions));
     }
 
+    /**
+     * Request permission boolean.
+     *
+     * @param fragment    the fragment
+     * @param permissions the permissions
+     * @return the boolean
+     */
     public synchronized boolean requestPermission(Fragment fragment, String... permissions) {
         return requestPermission(fragment, null, REQUEST_CODE_PERMISSION_DEFAULT, Arrays.asList(permissions));
     }
 
+    /**
+     * Request permission boolean.
+     *
+     * @param activity    the activity
+     * @param requestCode the request code
+     * @param permissions the permissions
+     * @return the boolean
+     */
     public synchronized boolean requestPermission(Activity activity, int requestCode,
                                                   String... permissions) {
         return requestPermission(null, activity, requestCode, Arrays.asList(permissions));
     }
 
+    /**
+     * Request permission boolean.
+     *
+     * @param fragment    the fragment
+     * @param requestCode the request code
+     * @param permissions the permissions
+     * @return the boolean
+     */
     public synchronized boolean requestPermission(Fragment fragment, int requestCode, String... permissions) {
         return requestPermission(fragment, null, requestCode, Arrays.asList(permissions));
     }
@@ -73,6 +118,12 @@ public class PermissionUtil {
         return false;
     }
 
+    /**
+     * Is allowed boolean.
+     *
+     * @param permission the permission
+     * @return the boolean
+     */
     boolean isAllowed(String permission) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;

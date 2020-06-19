@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.map.util;
 
 import android.content.Context;
@@ -12,6 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class LinearLayoutManagerWithSmoothScroller extends LinearLayoutManager {
 
+    /**
+     * Instantiates a new Linear layout manager with smooth scroller.
+     *
+     * @param context the context
+     */
     public LinearLayoutManagerWithSmoothScroller(Context context) {
         super(context, HORIZONTAL, false);
     }
@@ -25,6 +34,11 @@ public class LinearLayoutManagerWithSmoothScroller extends LinearLayoutManager {
     }
 
     private class TopSnappedSmoothScroller extends LinearSmoothScroller {
+        /**
+         * Instantiates a new Top snapped smooth scroller.
+         *
+         * @param context the context
+         */
         TopSnappedSmoothScroller(Context context) {
             super(context);
 

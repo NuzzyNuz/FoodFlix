@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.scanresult;
 
 import android.content.ClipData;
@@ -13,6 +17,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +36,10 @@ import com.example.foodflix.helpers.model.Code;
 import com.example.foodflix.helpers.util.SharedPrefUtil;
 import com.example.foodflix.helpers.util.TimeUtil;
 import com.example.foodflix.helpers.util.database.DatabaseUtil;
+import com.example.foodflix.ui.alternativeproducts.AlternativeProductsActivity;
 import com.example.foodflix.ui.settings.SettingsActivity;
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork;
+import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,37 +56,92 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * The type Scan result activity.
+ */
 public class ScanResultActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * The constant PRODUCT_CODE.
+     */
+    public static final String PRODUCT_CODE = "com.example.foodflix.productCode";
+
+    /**
+     * The M auth.
+     */
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    /**
+     * The M auth user.
+     */
     FirebaseUser mAuthUser = mAuth.getCurrentUser();
-    DatabaseReference databaseDietPreference, databaseProducts;
+    /**
+     * The Database diet preference.
+     */
+    DatabaseReference databaseDietPreference, /**
+     * The Database products.
+     */
+    databaseProducts;
     private CompositeDisposable mCompositeDisposable;
     private ActivityScanResultBinding mBinding;
     private Menu mToolbarMenu;
     private Code mCurrentCode;
     private boolean mIsHistory, mIsPickedFromGallery;
+    /**
+     * The Tv alternatives.
+     */
+    TextView TVAlternatives;
+    private ProgressBar progressBar;
 
+    /**
+     * Gets composite disposable.
+     *
+     * @return the composite disposable
+     */
     public CompositeDisposable getCompositeDisposable() {
         return mCompositeDisposable;
     }
 
+    /**
+     * Sets composite disposable.
+     *
+     * @param compositeDisposable the composite disposable
+     */
     public void setCompositeDisposable(CompositeDisposable compositeDisposable) {
         mCompositeDisposable = compositeDisposable;
     }
 
+    /**
+     * Gets current code.
+     *
+     * @return the current code
+     */
     public Code getCurrentCode() {
         return mCurrentCode;
     }
 
+    /**
+     * Sets current code.
+     *
+     * @param currentCode the current code
+     */
     public void setCurrentCode(Code currentCode) {
         mCurrentCode = currentCode;
     }
 
+    /**
+     * Gets toolbar menu.
+     *
+     * @return the toolbar menu
+     */
     public Menu getToolbarMenu() {
         return mToolbarMenu;
     }
 
+    /**
+     * Sets toolbar menu.
+     *
+     * @param toolbarMenu the toolbar menu
+     */
     public void setToolbarMenu(Menu toolbarMenu) {
         mToolbarMenu = toolbarMenu;
     }
@@ -89,10 +151,29 @@ public class ScanResultActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_scan_result);
 
+
         //getting the reference of products node
         databaseProducts = FirebaseDatabase.getInstance().getReference("products");
-        //getting the reference of artists node
+        databaseProducts.keepSynced(true);
+        //getting the reference of diet preference node
         databaseDietPreference = FirebaseDatabase.getInstance().getReference("dietPreferences");
+        databaseDietPreference.keepSynced(true);
+
+        progressBar = findViewById(R.id.progressbarImg);
+
+        TVAlternatives = findViewById(R.id.text_view_alternatives);
+
+        TVAlternatives.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AlternativeProductsActivity.class);
+
+                intent.putExtra(PRODUCT_CODE, getCurrentCode().getContent());
+
+                startActivity(intent);
+
+            }
+        });
 
         setCompositeDisposable(new CompositeDisposable());
         getWindow().setBackgroundDrawable(null);
@@ -101,13 +182,134 @@ public class ScanResultActivity extends AppCompatActivity implements View.OnClic
         setListeners();
         checkInternetConnection();
         loadMatchResult();
+        try {
+            loadProductResult();
+
+        } catch (Exception e) {
+            TextView ErrorMsg = findViewById(R.id.textViewProductNameR);
+            TextView HideMatch = findViewById(R.id.text_view_match_result);
+            HideMatch.setVisibility(View.GONE);
+            TVAlternatives.setVisibility(View.GONE);
+            ErrorMsg.setText("Unable to detect a product code. Please scan a valid product code");
+            ErrorMsg.setTextColor(Color.RED);
+            ErrorMsg.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+//            Toast.makeText(this,"Unable to detect a product code!", Toast.LENGTH_SHORT).show();
+        }
 
 
     }
 
+    private void loadProductResult() {
+        String productCode = null;
+        if (getCurrentCode().getContent() != null) {
+            productCode = getCurrentCode().getContent();
+        }
+
+        databaseProducts.child(productCode).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String productName = dataSnapshot.child("productName").getValue().toString();
+                    String productCategory = dataSnapshot.child("productCategory").getValue().toString();
+                    String peanutProduct = dataSnapshot.child("peanut").getValue().toString();
+                    String milkProduct = dataSnapshot.child("milk").getValue().toString();
+                    String wheatProduct = dataSnapshot.child("wheat").getValue().toString();
+                    String soyProduct = dataSnapshot.child("soy").getValue().toString();
+                    String shellfishProduct = dataSnapshot.child("shellFish").getValue().toString();
+                    String eggProduct = dataSnapshot.child("egg").getValue().toString();
+                    String fishProduct = dataSnapshot.child("fish").getValue().toString();
+                    String porkProduct = dataSnapshot.child("pork").getValue().toString();
+                    String alcoholProduct = dataSnapshot.child("alcohol").getValue().toString();
+                    String poultryProduct = dataSnapshot.child("poultry").getValue().toString();
+                    String beefProduct = dataSnapshot.child("beef").getValue().toString();
+
+                    TextView textViewProductName = findViewById(R.id.textViewProductNameR);
+                    TextView textViewProductCategory = findViewById(R.id.textViewProductCatR);
+                    Chip chipPeanut = findViewById(R.id.chipPeanutR);
+                    Chip chipMilk = findViewById(R.id.chipMilkR);
+                    Chip chipWheat = findViewById(R.id.chipWheatR);
+                    Chip chipsoy = findViewById(R.id.chipsoyR);
+                    Chip chipshellFish = findViewById(R.id.chipshellFishR);
+                    Chip chipegg = findViewById(R.id.chipeggR);
+                    Chip chipfish = findViewById(R.id.chipfishR);
+                    Chip chippork = findViewById(R.id.chipporkR);
+                    Chip chippoultry = findViewById(R.id.chippoultryR);
+                    Chip chipbeef = findViewById(R.id.chipbeefR);
+                    Chip chipalcohol = findViewById(R.id.chipalcoholR);
+
+                    textViewProductName.setText("PRODUCT NAME: " + productName);
+                    textViewProductCategory.setText("PRODUCT CATEGORY: " + productCategory);
+                    if (peanutProduct.equals("true")) {
+                        chipPeanut.setText("peanut");
+                        chipPeanut.setVisibility(View.VISIBLE);
+                    }
+
+                    if (milkProduct.equals("true")) {
+                        chipMilk.setText("milk");
+                        chipMilk.setVisibility(View.VISIBLE);
+                    }
+
+                    if (wheatProduct.equals("true")) {
+                        chipWheat.setText("wheat");
+                        chipWheat.setVisibility(View.VISIBLE);
+                    }
+
+                    if (soyProduct.equals("true")) {
+                        chipsoy.setText("soy");
+                        chipsoy.setVisibility(View.VISIBLE);
+                    }
+
+                    if (shellfishProduct.equals("true")) {
+                        chipshellFish.setText("shell fish");
+                        chipshellFish.setVisibility(View.VISIBLE);
+                    }
+
+                    if (eggProduct.equals("true")) {
+                        chipegg.setText("egg");
+                        chipegg.setVisibility(View.VISIBLE);
+                    }
+
+                    if (fishProduct.equals("true")) {
+                        chipfish.setText("fish");
+                        chipfish.setVisibility(View.VISIBLE);
+                    }
+
+                    if (porkProduct.equals("true")) {
+                        chippork.setText("pork");
+                        chippork.setVisibility(View.VISIBLE);
+                    }
+
+                    if (poultryProduct.equals("true")) {
+                        chippoultry.setText("poultry");
+                        chippoultry.setVisibility(View.VISIBLE);
+                    }
+
+                    if (beefProduct.equals("true")) {
+                        chipbeef.setText("beef");
+                        chipbeef.setVisibility(View.VISIBLE);
+                    }
+
+                    if (alcoholProduct.equals("true")) {
+                        chipalcohol.setText("alcohol");
+                        chipalcohol.setVisibility(View.VISIBLE);
+                    }
+
+                } else {
+                    ((TextView) findViewById(R.id.text_view_match_result)).setText("Sorry! This product barcode has not yet been added to our database");
+                    ((TextView) findViewById(R.id.text_view_match_result)).setTextColor(Color.RED);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void loadMatchResult() {
         if (mAuthUser != null) {
-
+            progressBar.setVisibility(View.VISIBLE);
             databaseDietPreference.child(mAuthUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -203,6 +405,8 @@ public class ScanResultActivity extends AppCompatActivity implements View.OnClic
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
+                                    String productName = dataSnapshot.child("productName").getValue().toString();
+                                    String productCategory = dataSnapshot.child("productCategory").getValue().toString();
                                     String peanutProduct = dataSnapshot.child("peanut").getValue().toString();
                                     String milkProduct = dataSnapshot.child("milk").getValue().toString();
                                     String wheatProduct = dataSnapshot.child("wheat").getValue().toString();
@@ -214,6 +418,7 @@ public class ScanResultActivity extends AppCompatActivity implements View.OnClic
                                     String alcoholProduct = dataSnapshot.child("alcohol").getValue().toString();
                                     String poultryProduct = dataSnapshot.child("poultry").getValue().toString();
                                     String beefProduct = dataSnapshot.child("beef").getValue().toString();
+
 
                                     boolean peanutMatch = peanut.equals("true") && peanutProduct.equals("true");
                                     boolean milkMatch = finalMilk.equals("true") && milkProduct.equals("true");
@@ -231,14 +436,19 @@ public class ScanResultActivity extends AppCompatActivity implements View.OnClic
                                     if (peanutMatch || milkMatch || wheatMatch || soyMatch || shellFishMatch || eggMatch || fishMatch || porkMatch || alcoholMatch || poultryMatch || beefMatch) {
                                         ((TextView) findViewById(R.id.text_view_match_result)).setText("This product does not suit your dietary preference");
                                         ((TextView) findViewById(R.id.text_view_match_result)).setTextColor(Color.RED);
+                                        progressBar.setVisibility(View.INVISIBLE);
                                     } else {
                                         ((TextView) findViewById(R.id.text_view_match_result)).setText("This product suits your dietary preference");
                                         ((TextView) findViewById(R.id.text_view_match_result)).setTextColor(Color.GREEN);
+                                        progressBar.setVisibility(View.INVISIBLE);
+
                                     }
 
                                 } else {
-                                    ((TextView) findViewById(R.id.text_view_match_result)).setText("Sorry! This product barcode has not yet been added to our databases");
-                                    ((TextView) findViewById(R.id.text_view_match_result)).setTextColor(Color.RED);
+//                                    ((TextView) findViewById(R.id.text_view_match_result)).setText("Sorry! This product barcode has not yet been added to our database");
+//                                    ((TextView) findViewById(R.id.text_view_match_result)).setTextColor(Color.RED);
+                                    progressBar.setVisibility(View.INVISIBLE);
+
                                 }
                             }
 
@@ -251,6 +461,8 @@ public class ScanResultActivity extends AppCompatActivity implements View.OnClic
                     } else {
                         ((TextView) findViewById(R.id.text_view_match_result)).setText("Your Dietary Preferences have not been set. Please set them in 'Settings > Dietary Preferences'");
                         ((TextView) findViewById(R.id.text_view_match_result)).setTextColor(Color.RED);
+                        progressBar.setVisibility(View.INVISIBLE);
+
                     }
                 }
 

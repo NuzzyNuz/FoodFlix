@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.resetpassword;
 
 import android.content.Intent;
@@ -18,8 +22,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+/**
+ * The type Reset password activity.
+ */
 public class ResetPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * The M auth.
+     */
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     private EditText editTextEmail;

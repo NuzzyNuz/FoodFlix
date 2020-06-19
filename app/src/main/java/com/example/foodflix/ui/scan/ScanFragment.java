@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2020. All Rights Reserved by Nuzrah Nilamdeen
+ ******************************************************************************/
+
 package com.example.foodflix.ui.scan;
 
 
@@ -59,6 +63,9 @@ import java.util.List;
 import java.util.Locale;
 
 
+/**
+ * The type Scan fragment.
+ */
 public class ScanFragment extends androidx.fragment.app.Fragment implements View.OnClickListener {
 
     private Context mContext;
@@ -68,10 +75,18 @@ public class ScanFragment extends androidx.fragment.app.Fragment implements View
     private TextView mTextViewFlash, mTextViewScanGallery;
     private boolean mIsFlashOn;
 
+    /**
+     * Instantiates a new Scan fragment.
+     */
     public ScanFragment() {
 
     }
 
+    /**
+     * New instance scan fragment.
+     *
+     * @return the scan fragment
+     */
     public static ScanFragment newInstance() {
         return new ScanFragment();
     }
